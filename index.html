@@ -611,6 +611,21 @@ background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:
 .price-grid>.pkg-col.featured{--pb-scale:1;z-index:2}
 .pkg-col:hover{--pb-rot:0deg!important;--pb-hover:-8px}
 
+/* Nedtonade paket: de tva kampanjpaketen ar inte rekommendationen har.
+   Recesserade men aldrig olasliga — full aterstallning vid hover och
+   tangentbordsfokus sa att innehallet alltid gar att lasa. Rorelsen ror vi inte. */
+.price-grid>.pkg-col.is-muted{--pb-scale:.86}
+.pkg-col.is-muted .price-box{
+  filter:grayscale(.88) saturate(.28);
+  opacity:.64;
+  transition:opacity .55s var(--ease), filter .55s var(--ease);
+}
+.pkg-col.is-muted:hover .price-box,
+.pkg-col.is-muted:focus-within .price-box{filter:none;opacity:1}
+@media(prefers-reduced-motion:reduce){
+  .pkg-col.is-muted .price-box{transition:none}
+}
+
 /* Three-zone signable document. NOTE: backdrop-filter + overflow:hidden removed —
    both flatten 3D and would kill the counter-rotated price plate. */
 .price-box{border:1px solid rgba(212,168,75,.2);border-top:2px solid rgba(212,168,75,.45);border-radius:22px;
