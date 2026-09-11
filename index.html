@@ -614,17 +614,15 @@ background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:
 /* Nedtonade paket: de tva kampanjpaketen ar inte rekommendationen har.
    Recesserade men aldrig olasliga — full aterstallning vid hover och
    tangentbordsfokus sa att innehallet alltid gar att lasa. Rorelsen ror vi inte. */
-.price-grid>.pkg-col.is-muted{--pb-scale:.86}
-.pkg-col.is-muted .price-box{
-  filter:grayscale(.88) saturate(.28);
-  opacity:.64;
-  transition:opacity .55s var(--ease), filter .55s var(--ease);
-}
-.pkg-col.is-muted:hover .price-box,
-.pkg-col.is-muted:focus-within .price-box{filter:none;opacity:1}
+/* Samma nedtoning som hanehus: helt avfargade och platta, sa att ogat
+   landar pa det levande kortet utan ett enda ord av saljande. */
+.pkg-col.is-muted{--pb-rot:0deg!important;--pb-scale:.86;animation:none!important;pointer-events:none}
+.body-loaded .price-grid>.pkg-col.is-muted.rv:not(.in){--pb-rot:0deg!important}
+.body-loaded .price-grid>.pkg-col.is-muted.rv.in{opacity:.42}
 @media(prefers-reduced-motion:reduce){
-  .pkg-col.is-muted .price-box{transition:none}
+  .body-loaded .price-grid>.pkg-col.is-muted.rv{opacity:.42!important}
 }
+.pkg-col.is-muted .price-box{filter:grayscale(1)}
 
 /* Three-zone signable document. NOTE: backdrop-filter + overflow:hidden removed —
    both flatten 3D and would kill the counter-rotated price plate. */
